@@ -30,7 +30,7 @@ const UpdatePage = () => {
   });
 
   const [startTime, setStartTime] = useState<Date>(new Date());
-  const [duration, setDuration] = useState(null);
+  const [duration, setDuration] = useState(180000);
   const [isPaused, setIsPaused] = useState(false);
   const [announcement, setAnnouncement] = useState([]);
   const [showCreatedTime, setShowCreatedTime] = useState(false);
@@ -47,7 +47,7 @@ const UpdatePage = () => {
       setAnnouncement(parsed);
       setIsJSONValid(true);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setIsJSONValid(false);
     }
     setAnnouncementJSON(newJSON);
@@ -132,7 +132,7 @@ const UpdatePage = () => {
             <input
               type="number"
               value={duration}
-              onChange={(e) => setDuration(e.target.value)}
+              onChange={(e) => setDuration(+e.target.value)}
               className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
             />
           </div>
@@ -175,7 +175,6 @@ const UpdatePage = () => {
               onChange={(e) => setLanguage(e.target.value)}
               name={'language'}
               value={language}
-              defaultValue={'id'}
             >
               <option value="id">Bahasa Indonesia</option>
               <option value="en">English</option>
